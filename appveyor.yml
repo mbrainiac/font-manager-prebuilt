@@ -33,7 +33,7 @@ after_build:
 
 artifacts:
   - path: dist\fontmanager-%APP_VERSION%-win.zip
-    name: fontmanager--%APP_VERSION%-win.zip
+    name: fontmanager-%APP_VERSION%-win.zip
 
 deploy:
   provider: GitHub
