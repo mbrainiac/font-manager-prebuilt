@@ -16,6 +16,29 @@
     "dist": "build",
     "release": "build"
   },
+  "build": {
+    "app-bundle-id": "vn.evolus.font-manager-prebuilt",
+    "app-category-type": "public.app-category.graphics-design",
+    "iconUrl": "https://raw.githubusercontent.com/evolus/pencil/master/build/icon.ico",
+    "productName": "fontmanager",
+    "linux": {
+      "description": "Provides access to the system font catalog",
+      "synopsis": "Provides access to the system font catalog",
+      "maintainer": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
+      "vendor": "Evolus",
+      "target": ["tar.gz"],
+      "depends": []
+    },
+    "win": {
+      "authors": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
+      "owners": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
+      "description": "Provides access to the system font catalog",
+      "copyright": "Copyright © 2016 Nguyen Tien Dzung. All rights reserved."
+    },
+    "download": {
+      "cache": ".electron-cache"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mbrainiac/font-manager-prebuilt.git"
