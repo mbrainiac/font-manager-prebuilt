@@ -1,13 +1,13 @@
 {
   "name": "font-manager-prebuilt",
-  "version": "1.2.3",
+  "version": "1.3.4",
   "description": "Provides access to the system font catalog",
   "main": "node_modules/font-manager/build/Release/fontmanager.node",
   "dependencies": {},
   "devDependencies": {
     "font-manager": "git+https://github.com/mbrainiac/font-manager.git",
     "electron-builder": "4.2.6",
-    "electron-prebuilt": "1.2.3"
+    "electron-prebuilt": "1.3.4"
   },
   "scripts": {
     "postinstall": "install-app-deps",
