@@ -28,13 +28,13 @@ build_script:
   - npm --version
 
 deploy:
-  release: fontmanager-v$(appveyor_build_version)
   provider: GitHub
   auth_token:
     secure: mYjFV31UpA9DJblj4EH37NbPJ03Oci3yQAu210QeJMrlNdM/ayc8XJXnSr7wUKiR
-  artifact: ./node_modules/font-manager/build/Release/fontmanager.node
-  draft: true
+  artifact: node_modules\font-manager\build\Release\fontmanager.node
+  draft: false
   prerelease: false
+  force_update: true
   on:
     appveyor_repo_tag: true
 
