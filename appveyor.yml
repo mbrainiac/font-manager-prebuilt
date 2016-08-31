@@ -28,11 +28,14 @@ build_script:
   - npm --version
   - dir node_modules\font-manager\build\Release
 
+artifacts:
+  - path: .\node_modules\font-manager\build\Release\fontmanager.node
+    name: fontmanager-win.zip
+
 deploy:
   provider: GitHub
   auth_token:
     secure: mYjFV31UpA9DJblj4EH37NbPJ03Oci3yQAu210QeJMrlNdM/ayc8XJXnSr7wUKiR
-  artifact: .\node_modules\font-manager\build\Release\fontmanager.node
   draft: false
   prerelease: false
   force_update: true
