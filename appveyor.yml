@@ -1,4 +1,4 @@
-version: 1.2.2+{build}
+version: 1.2.3+{build}
 
 platform:
   - x64
@@ -36,7 +36,6 @@ deploy:
   draft: true
   prerelease: false
   on:
-    branch: master
     appveyor_repo_tag: true
 
 test: off

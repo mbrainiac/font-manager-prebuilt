@@ -32,11 +32,12 @@ before_install:
 install:
   - nvm install $NODE_VERSION
   - npm install npm -g
-  - npm install
   - npm install electron-builder@4.2.6
   - npm prune
+  - npm install
+  - ls -al ./node_modules/font-manager/build/Release
 
-script:
+before_deploy:
   - tar -cvzf ./dist/fontmanager-$TRAVIS_OS_NAME.tar.gz -C ./node_modules/font-manager/build/Release fontmanager.node
 
 branches:
