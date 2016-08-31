@@ -35,14 +35,14 @@ install:
   - npm install
   - npm install electron-builder@4.2.6
   - npm prune
+
 script:
-  - npm run dist
+  - tar -cvzf ./dist/fontmanager-$TRAVIS_OS_NAME.tar.gz -C ./node_modules/font-manager/build/Release fontmanager.node
+
 branches:
   only:
     - "/^v\\d+\\.\\d+\\.\\d+(\\-.*)?$/"
 
-before_deploy:
-  - tar -cvzf ./dist/fontmanager-$TRAVIS_OS_NAME.tar.gz -C ./node_modules/font-manager/build/Release fontmanager.node
 deploy:
   provider: releases
   api_key:

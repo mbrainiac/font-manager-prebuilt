@@ -26,7 +26,6 @@ install:
 build_script:
   - node --version
   - npm --version
-  - npm run dist
 
 deploy:
   release: fontmanager-v$(appveyor_build_version)
