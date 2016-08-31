@@ -1,2 +1,3 @@
 # font-manager-prebuilt
-Install font-manager prebuilts using npm
+
+Electron prebuilt version of font-manager

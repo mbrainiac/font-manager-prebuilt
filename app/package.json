@@ -1,0 +1,14 @@
+{
+  "name": "font-manager-prebuilt",
+  "version": "1.2.2",
+  "description": "Provides access to the system font catalog",
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbrainiac/font-manager-prebuilt/issues"
+  },
+  "homepage": "https://github.com/mbrainiac/font-manager-prebuilt",
+  "private": true
+}
