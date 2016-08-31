@@ -26,10 +26,12 @@ install:
 build_script:
   - node --version
   - npm --version
-  - dir node_modules\font-manager\build\Release
+
+after_build:
+  - 7z a dist\fontmanager-win.zip %APPVEYOR_BUILD_FOLDER%\node_modules\font-manager\build\Release\fontmanager.node
 
 artifacts:
-  - path: .\node_modules\font-manager\build\Release\fontmanager.node
+  - path: dist\fontmanager-win.zip
     name: fontmanager-win.zip
 
 deploy:
