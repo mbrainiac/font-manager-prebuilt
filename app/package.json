@@ -1,6 +1,6 @@
 {
   "name": "font-manager-prebuilt",
-  "version": "1.3.5",
+  "version": "1.4.1",
   "description": "Provides access to the system font catalog",
   "dependencies": {
     "font-manager": "git+https://github.com/mbrainiac/font-manager.git"
