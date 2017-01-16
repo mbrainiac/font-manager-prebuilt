@@ -1,6 +1,7 @@
-version: 1.4.1+{build}
+version: 1.4.2+{build}
 
 platform:
+  - x86
   - x64
 
 cache:
@@ -11,13 +12,13 @@ cache:
 environment:
   GH_TOKEN:
     secure: mYjFV31UpA9DJblj4EH37NbPJ03Oci3yQAu210QeJMrlNdM/ayc8XJXnSr7wUKiR
-  APP_VERSION: 1.4.1
+  APP_VERSION: 1.4.2
 
 init:
   - git config --global core.autocrlf input
 
 install:
-  - ps: Install-Product node 6 x64
+  - ps: Install-Product node 6 $env:platform
   - git reset --hard HEAD
   - npm install npm -g
   - npm install electron-builder@4.2.6
@@ -29,11 +30,11 @@ build_script:
   - npm --version
 
 after_build:
-  - 7z a dist\fontmanager-1.4.1-win.zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
+  - 7z a dist\fontmanager-1.4.2-win-$(env:platform).zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
 
 artifacts:
-  - path: dist\fontmanager-1.4.1-win.zip
-    name: fontmanager-1.4.1-win.zip
+  - path: 'dist\fontmanager-1.4.2-win-$(env:platform).zip'
+    name: 'fontmanager-1.4.2-win-$(env:platform).zip'
 
 deploy:
   provider: GitHub

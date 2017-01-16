@@ -1,12 +1,12 @@
 {
   "name": "font-manager-prebuilt",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Provides access to the system font catalog",
   "main": "node_modules/font-manager/build/Release/fontmanager.node",
   "dependencies": {},
   "devDependencies": {
     "electron-builder": "4.2.6",
-    "electron-prebuilt": "1.4.1"
+    "electron-prebuilt": "1.4.2"
   },
   "scripts": {
     "postinstall": "install-app-deps",
