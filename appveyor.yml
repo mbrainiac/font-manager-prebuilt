@@ -18,6 +18,7 @@ init:
   - git config --global core.autocrlf input
 
 install:
+  - ps: $env:PLATFORM = $env:platform
   - ps: Install-Product node 6 $env:platform
   - git reset --hard HEAD
   - npm install npm -g
@@ -30,11 +31,11 @@ build_script:
   - npm --version
 
 after_build:
-  - 7z a dist\fontmanager-1.4.2-win-$(env:platform).zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
+  - 7z a dist\fontmanager-1.4.2-win-%PLATFORM%.zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
 
 artifacts:
-  - path: 'dist\fontmanager-1.4.2-win-$(env:platform).zip'
-    name: 'fontmanager-1.4.2-win-$(env:platform).zip'
+  - path: 'dist\fontmanager-1.4.2-win-%PLATFORM%.zip'
+    name: 'fontmanager-1.4.2-win-%PLATFORM%.zip'
 
 deploy:
   provider: GitHub
