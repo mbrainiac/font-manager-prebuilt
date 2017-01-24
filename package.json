@@ -1,12 +1,12 @@
 {
   "name": "font-manager-prebuilt",
-  "version": "1.4.2",
+  "version": "1.4.14",
   "description": "Provides access to the system font catalog",
   "main": "node_modules/font-manager/build/Release/fontmanager.node",
   "dependencies": {},
   "devDependencies": {
     "electron-builder": "4.2.6",
-    "electron-prebuilt": "1.4.2"
+    "electron": "1.4.14"
   },
   "scripts": {
     "postinstall": "install-app-deps",
@@ -16,7 +16,7 @@
     "release": "build"
   },
   "build": {
-    "app-bundle-id": "vn.evolus.font-manager-prebuilt",
+    "appId": "vn.evolus.font-manager-prebuilt",
     "app-category-type": "public.app-category.graphics-design",
     "iconUrl": "https://raw.githubusercontent.com/evolus/pencil/master/build/icon.ico",
     "productName": "fontmanager",
@@ -34,7 +34,7 @@
       "description": "Provides access to the system font catalog",
       "copyright": "Copyright © 2016 Nguyen Tien Dzung. All rights reserved."
     },
-    "download": {
+    "electronDownload": {
       "cache": ".electron-cache"
     }
   },
