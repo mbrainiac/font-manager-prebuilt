@@ -5,7 +5,7 @@
   "main": "node_modules/font-manager/build/Release/fontmanager.node",
   "dependencies": {},
   "devDependencies": {
-    "electron-builder": "4.2.6",
+    "electron-builder": "11.3.0",
     "electron": "1.4.14"
   },
   "scripts": {
