@@ -25,6 +25,7 @@ install:
   - npm install electron-builder@4.2.6
   - npm prune
   - npm install
+  - node ./node_modules/electron-builder/out/cli/install-app-deps.js
 
 build_script:
   - node --version
