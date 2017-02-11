@@ -32,18 +32,16 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y gcc make; fi
 install:
   - nvm install $NODE_VERSION
-  - npm install npm -g
-  - npm install electron-builder@4.2.6
-  - npm prune
   - npm install
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then node ./node_modules/electron-builder/out/cli/install-app-deps.js; fi
 
 script:
   - node -v
   - npm -v
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./build.sh; fi
 
 before_deploy:
-  - tar -cvzf ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then tar -cvzf ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node; fi
   - ls -al ./dist
 
 branches:
@@ -54,7 +52,10 @@ deploy:
   provider: releases
   api_key:
     secure: JwwShrsKPcVBOwoFOIQRK6sDb5EMcFIsRntzxDjAdFSrYRQlVVbfXrdtM2uZTd1LRU5nEqeRnmPYGzL8JKndRlb8G6IrOPnTF2guDKsx/KZvQuXDka50bDj9gKdvdqQP1tOXQyIWX+aeUzho8TRDNh2791xiZHZ3ljXUg/0VFR25enE3O34sz5JZNHjCbepk9f63QBCU91H080hFllU0jokwg42W9BL2S5ow6LY6IqcIn4wbz3YUO1D7mRtXXK4IUcA0vdc7WMExwsZ/Gh6cmZEdTlwN994H4oMVXJ1ARJbsj8R1+6fdewUO5VhIfPUpBnyo7bvvWbRFWiq25x4iPxemSQ+j9sA5OP61C3hhX1VAkLSoqNXJlTTFuFPHCrlHKBfZICqxv3jg4Ip3Egd5tZ1Yn2pu4tgh4LEr3T9tL/ax/6xIHbcfzxK8IhSwU1gBCQ35gmAGAPnio4XL+P/hqgB3ZzBqne8HQglsTXveyXOY0FcivdPMjFvWdmdP5bY7sHXaagMqgeuJ1GLSMumZw5gIYG79EHk9IAgeRWyjp9+ZzUCO4MtBc5FaVCjUUYyPpTMFFcw2/9yrAO63i05V9quZBle38CTj51tLxsgMJMd9DOpbXhFB8TlEixjY6ZwPmJ8SLLMcp7EfrdjsXl6jGqjW3eaAJOV/3i+LD4ZeeQ0=
-  file: ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz
+  file:
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME-x64.tar.gz; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME-ia32.tar.gz; fi
   skip_cleanup: true
   on:
     tags: true

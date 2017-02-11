@@ -20,10 +20,6 @@ init:
 install:
   - ps: $env:PLATFORM = $env:platform
   - ps: Install-Product node 6 $env:platform
-  - git reset --hard HEAD
-  - npm install npm -g
-  - npm install electron-builder@4.2.6
-  - npm prune
   - npm install
   - node ./node_modules/electron-builder/out/cli/install-app-deps.js
 

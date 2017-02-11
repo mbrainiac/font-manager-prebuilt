@@ -9,8 +9,6 @@
     "electron": "1.4.14"
   },
   "scripts": {
-    "postinstall": "install-app-deps",
-    "install-app-deps": "node ./node_modules/electron-builder/out/install-app-deps.js",
     "pack": "build",
     "dist": "build",
     "release": "build"
