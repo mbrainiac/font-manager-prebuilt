@@ -11,7 +11,8 @@
   "scripts": {
     "pack": "build",
     "dist": "build",
-    "release": "build"
+    "release": "build",
+    "postinstall": "install-app-deps"
   },
   "build": {
     "appId": "vn.evolus.font-manager-prebuilt",

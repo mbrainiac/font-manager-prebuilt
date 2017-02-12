@@ -10,6 +10,8 @@ matrix:
   include:
     - os: linux
     - os: osx
+services:
+    - docker
 cache:
   apt: true
   bundler: true
@@ -29,16 +31,16 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then git lfs pull; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://github.com/github/git-lfs/releases/download/v1.2.0/git-lfs-linux-amd64-1.2.0.tar.gz | tar -xz; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then git-lfs-1.2.0/git-lfs pull; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y gcc make gcc-multilib g++-multilib; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y libfontconfig1-dev:i386; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y gcc make; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull ioft/i386-ubuntu:xenial; fi
 install:
   - nvm install $NODE_VERSION
   - npm install
 
 script:
-  - node -v
-  - npm -v
-  - ./build.sh
+  - npm install
+  - tar -cvzf ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run -i -v ${PWD}:/fm ioft/i386-ubuntu:xenial /bin/bash -c '/fm/linux32.sh'; fi
 
 before_deploy:
   - ls -al ./dist
@@ -52,8 +54,18 @@ deploy:
   api_key:
     secure: JwwShrsKPcVBOwoFOIQRK6sDb5EMcFIsRntzxDjAdFSrYRQlVVbfXrdtM2uZTd1LRU5nEqeRnmPYGzL8JKndRlb8G6IrOPnTF2guDKsx/KZvQuXDka50bDj9gKdvdqQP1tOXQyIWX+aeUzho8TRDNh2791xiZHZ3ljXUg/0VFR25enE3O34sz5JZNHjCbepk9f63QBCU91H080hFllU0jokwg42W9BL2S5ow6LY6IqcIn4wbz3YUO1D7mRtXXK4IUcA0vdc7WMExwsZ/Gh6cmZEdTlwN994H4oMVXJ1ARJbsj8R1+6fdewUO5VhIfPUpBnyo7bvvWbRFWiq25x4iPxemSQ+j9sA5OP61C3hhX1VAkLSoqNXJlTTFuFPHCrlHKBfZICqxv3jg4Ip3Egd5tZ1Yn2pu4tgh4LEr3T9tL/ax/6xIHbcfzxK8IhSwU1gBCQ35gmAGAPnio4XL+P/hqgB3ZzBqne8HQglsTXveyXOY0FcivdPMjFvWdmdP5bY7sHXaagMqgeuJ1GLSMumZw5gIYG79EHk9IAgeRWyjp9+ZzUCO4MtBc5FaVCjUUYyPpTMFFcw2/9yrAO63i05V9quZBle38CTj51tLxsgMJMd9DOpbXhFB8TlEixjY6ZwPmJ8SLLMcp7EfrdjsXl6jGqjW3eaAJOV/3i+LD4ZeeQ0=
   file:
-    - ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME-x64.tar.gz
+    - ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+
+deploy:
+  provider: releases
+  api_key:
+    secure: JwwShrsKPcVBOwoFOIQRK6sDb5EMcFIsRntzxDjAdFSrYRQlVVbfXrdtM2uZTd1LRU5nEqeRnmPYGzL8JKndRlb8G6IrOPnTF2guDKsx/KZvQuXDka50bDj9gKdvdqQP1tOXQyIWX+aeUzho8TRDNh2791xiZHZ3ljXUg/0VFR25enE3O34sz5JZNHjCbepk9f63QBCU91H080hFllU0jokwg42W9BL2S5ow6LY6IqcIn4wbz3YUO1D7mRtXXK4IUcA0vdc7WMExwsZ/Gh6cmZEdTlwN994H4oMVXJ1ARJbsj8R1+6fdewUO5VhIfPUpBnyo7bvvWbRFWiq25x4iPxemSQ+j9sA5OP61C3hhX1VAkLSoqNXJlTTFuFPHCrlHKBfZICqxv3jg4Ip3Egd5tZ1Yn2pu4tgh4LEr3T9tL/ax/6xIHbcfzxK8IhSwU1gBCQ35gmAGAPnio4XL+P/hqgB3ZzBqne8HQglsTXveyXOY0FcivdPMjFvWdmdP5bY7sHXaagMqgeuJ1GLSMumZw5gIYG79EHk9IAgeRWyjp9+ZzUCO4MtBc5FaVCjUUYyPpTMFFcw2/9yrAO63i05V9quZBle38CTj51tLxsgMJMd9DOpbXhFB8TlEixjY6ZwPmJ8SLLMcp7EfrdjsXl6jGqjW3eaAJOV/3i+LD4ZeeQ0=
+  file:
     - ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME-ia32.tar.gz
   skip_cleanup: true
   on:
     tags: true
+  condition: $TRAVIS_OS_NAME=linux
