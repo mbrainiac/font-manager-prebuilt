@@ -22,7 +22,7 @@ nvm ls
 node -v
 npm -v
 
-npm install
+npm install --unsafe-perm
 
 tar -cvzf ./dist/fontmanager-1.4.14-linux-ia32.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
 

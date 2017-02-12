@@ -12,7 +12,8 @@
     "pack": "build",
     "dist": "build",
     "release": "build",
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
+    "install-app-deps": "node ./node_modules/electron-builder/out/cli/install-app-deps.js"
   },
   "build": {
     "appId": "vn.evolus.font-manager-prebuilt",
