@@ -32,7 +32,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then curl -L https://github.com/github/git-lfs/releases/download/v1.2.0/git-lfs-linux-amd64-1.2.0.tar.gz | tar -xz; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then git-lfs-1.2.0/git-lfs pull; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y gcc make; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull ioft/i386-ubuntu:xenial; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker pull mbrainiac/xenial-i386; fi
 install:
   - nvm install $NODE_VERSION
   - npm install
@@ -40,7 +40,7 @@ install:
 script:
   - npm install
   - tar -cvzf ./dist/fontmanager-$APP_VERSION-$TRAVIS_OS_NAME.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run -i -v ${PWD}:/fm ioft/i386-ubuntu:xenial /bin/bash -c '/fm/linux32.sh'; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then docker run -i -v ${PWD}:/fm mbrainiac/xenial-i386 /bin/bash -c '/fm/linux32.sh'; fi
 
 before_deploy:
   - ls -al ./dist
@@ -68,4 +68,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    condition: $TRAVIS_OS_NAME=linux
+    condition: "$TRAVIS_OS_NAME=linux"
