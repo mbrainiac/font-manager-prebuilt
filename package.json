@@ -1,23 +1,22 @@
 {
   "name": "font-manager-prebuilt",
-  "version": "1.4.14",
+  "version": "1.6.11",
   "description": "Provides access to the system font catalog",
   "main": "node_modules/font-manager/build/Release/fontmanager.node",
   "dependencies": {},
   "devDependencies": {
-    "electron-builder": "11.3.0",
-    "electron": "1.4.14"
+    "electron-builder": "19.16.0",
+    "electron": "1.6.11"
   },
   "scripts": {
-    "pack": "build",
-    "dist": "build",
-    "release": "build",
-    "postinstall": "install-app-deps",
+    "pack": "electron-builder",
+    "dist": "electron-builder",
+    "release": "electron-builder",
+    "postinstall": "electron-builder install-app-deps",
     "install-app-deps": "node ./node_modules/electron-builder/out/cli/install-app-deps.js"
   },
   "build": {
     "appId": "vn.evolus.font-manager-prebuilt",
-    "app-category-type": "public.app-category.graphics-design",
     "iconUrl": "https://raw.githubusercontent.com/evolus/pencil/master/build/icon.ico",
     "productName": "fontmanager",
     "linux": {
@@ -27,12 +26,6 @@
       "vendor": "Evolus",
       "target": ["tar.gz"],
       "depends": []
-    },
-    "win": {
-      "authors": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
-      "owners": "Nguyen Tien Dzung <ngtdungnt@gmail.com>",
-      "description": "Provides access to the system font catalog",
-      "copyright": "Copyright © 2016 Nguyen Tien Dzung. All rights reserved."
     },
     "electronDownload": {
       "cache": ".electron-cache"

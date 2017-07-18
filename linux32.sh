@@ -16,5 +16,5 @@ npm -v
 
 npm install
 
-tar -cvzf ./dist/fontmanager-1.4.14-linux-ia32.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
+tar -cvzf ./dist/fontmanager-1.6.11-linux-ia32.tar.gz -C ./app/node_modules/font-manager/build/Release fontmanager.node
 

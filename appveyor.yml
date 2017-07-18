@@ -1,4 +1,4 @@
-version: 1.4.14+{build}
+version: 1.6.11+{build}
 
 platform:
   - x86
@@ -12,7 +12,7 @@ cache:
 environment:
   GH_TOKEN:
     secure: mYjFV31UpA9DJblj4EH37NbPJ03Oci3yQAu210QeJMrlNdM/ayc8XJXnSr7wUKiR
-  APP_VERSION: 1.4.14
+  APP_VERSION: 1.6.11
 
 init:
   - git config --global core.autocrlf input
@@ -28,11 +28,11 @@ build_script:
   - npm --version
 
 after_build:
-  - 7z a dist\fontmanager-1.4.14-win-%PLATFORM%.zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
+  - 7z a dist\fontmanager-1.6.11-win-%PLATFORM%.zip %APPVEYOR_BUILD_FOLDER%\app\node_modules\font-manager\build\Release\fontmanager.node
 
 artifacts:
-  - path: 'dist\fontmanager-1.4.14-win-%PLATFORM%.zip'
-    name: 'fontmanager-1.4.14-win-%PLATFORM%.zip'
+  - path: 'dist\fontmanager-1.6.11-win-%PLATFORM%.zip'
+    name: 'fontmanager-1.6.11-win-%PLATFORM%.zip'
 
 deploy:
   provider: GitHub
